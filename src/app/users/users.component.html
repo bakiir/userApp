@@ -1,0 +1,15 @@
+<h2>Қолданушылар тізімі:</h2>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.name }} - {{ user.email }}
+  </li>
+</ul>
+
+<h3>Жаңа қолданушы қосу:</h3>
+<form (ngSubmit)="addUser()">
+  <input [(ngModel)]="newUser.name" name="name" placeholder="Аты" required />
+  <input [(ngModel)]="newUser.email" name="email" placeholder="Email" required />
+  <input [(ngModel)]="newUser.login" name="login" placeholder="Логин" required />
+  <input [(ngModel)]="newUser.password" name="password" type="password" placeholder="Құпия сөз" required />
+  <button type="submit">Қосу</button>
+</form>
