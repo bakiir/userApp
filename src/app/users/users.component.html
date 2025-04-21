@@ -2,8 +2,10 @@
 <ul>
   <li *ngFor="let user of users">
     {{ user.name }} - {{ user.email }}
+    <button (click)="deleteUser(user._id)">Өшіру</button>
   </li>
 </ul>
+
 
 <h3>Жаңа қолданушы қосу:</h3>
 <form (ngSubmit)="addUser()">
