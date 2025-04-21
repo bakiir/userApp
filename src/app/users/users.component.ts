@@ -23,6 +23,21 @@ export class UsersComponent implements OnInit {
     password: ''
   };
 
+  editingUser: User | null = null;
+  editUser(user: User): void {
+    this.editingUser = { ...user }; // Копируем пользователя в форму
+  }
+
+  updateUser(): void {
+    if (this.editingUser) {
+      this.userService.updateUser(this.editingUser._id, this.editingUser).subscribe(() => {
+        this.getUsers();
+        this.editingUser = null; // Сбрасываем форму
+      });
+    }
+  }
+
+
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
@@ -52,11 +67,5 @@ export class UsersComponent implements OnInit {
     });
   }
 
-// Обновить пользователя
-  updateUser(user: User): void {
-    this.userService.updateUser(user._id, user).subscribe(() => {
-      this.getUsers(); // Перезагрузить список после обновления
-    });
-  }
 
 }

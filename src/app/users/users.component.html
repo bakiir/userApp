@@ -2,6 +2,7 @@
 <ul>
   <li *ngFor="let user of users">
     {{ user.name }} - {{ user.email }}
+    <button (click)="editUser(user)">Өзгерту</button>
     <button (click)="deleteUser(user._id)">Өшіру</button>
   </li>
 </ul>
@@ -15,3 +16,15 @@
   <input [(ngModel)]="newUser.password" name="password" type="password" placeholder="Құпия сөз" required />
   <button type="submit">Қосу</button>
 </form>
+
+
+<div *ngIf="editingUser">
+  <h3>Қолданушыны өзгерту:</h3>
+  <form (ngSubmit)="updateUser()">
+    <input [(ngModel)]="editingUser.name" name="editName" placeholder="Аты" required />
+    <input [(ngModel)]="editingUser.email" name="editEmail" placeholder="Email" required />
+    <input [(ngModel)]="editingUser.login" name="editLogin" placeholder="Логин" required />
+    <input [(ngModel)]="editingUser.password" name="editPassword" type="password" placeholder="Құпия сөз" required />
+    <button type="submit">Өзгерту</button>
+  </form>
+</div>
